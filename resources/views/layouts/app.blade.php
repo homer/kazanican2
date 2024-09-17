@@ -49,7 +49,13 @@
                 })
 
                 window.Echo.private('App.Models.User.' + {{ auth()->id() }}).listen('NewOrderEvent', (event) => {
-                    alert(event.user_id + ' - Yeni Sipariş: ' + event.amount);
+                    let elContainer = document.getElementsByTagName('main')[0];
+
+                    let div = document.createElement('div');
+                    div.classList.add('max-w-7xl','mx-auto','mx-8','p-8','bg-white','border','shadow');
+                    div.innerHTML = event.user_id + ' - Yeni Sipariş: ' + event.amount;
+
+                    elContainer.insertBefore(div, location.firstChild);
                 })
             });
         </script>
